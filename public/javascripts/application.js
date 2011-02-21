@@ -4,7 +4,7 @@
 var JSEditor = function() {
     
     $(document).ready(function() {
-       console.log("my app has woken up in the right place!"); 
+       //console.log("my app has woken up in the right place!"); 
     });
 }
 

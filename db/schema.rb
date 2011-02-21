@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110220205604) do
+ActiveRecord::Schema.define(:version => 20110221041034) do
 
   create_table "css_documents", :force => true do |t|
     t.text     "data"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(:version => 20110220205604) do
   create_table "documents", :force => true do |t|
     t.string   "path"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "html_documents", :force => true do |t|
+    t.integer  "document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

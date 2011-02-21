@@ -1,13 +1,21 @@
-<script src="javascripts/raphael-min-1.5.2.js" type="text/javascript"></script>
-<script src="javascripts/cufon/AllertaStencil_400.font.js" type="text/javascript"></script>
-<script src="javascripts/CodeMirror-0.94/js/codemirror.js" type="text/javascript"></script>
+<%= javascript_include_tag "raphael-min-1.5.2.js" %>
+<%= javascript_include_tag "cufon/AllertaStencil_400.font.js" %>
+<%= javascript_include_tag "CodeMirror-0.94/js/codemirror.js" %>
 
 <script type="text/javascript">
 var jsEditor = undefined;
 var cssEditor = undefined;
 
 $(document).ready(function() {
-  jsEditor = CodeMirror.fromTextArea("jsCode", {
+  
+  $('#editors').accordion({
+    active: '.selected',
+       header: '.codeHeader', 
+       navigation: true,  
+       fillSpace: true, 
+       animated: 'easeslide'
+  });
+  jsEditor = new CodeMirror(CodeMirror.replace("jsCode"), {
     parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
     path: "javascripts/CodeMirror-0.94/js/",
     stylesheet: "javascripts/CodeMirror-0.94/css/jscolors.css",
@@ -24,13 +32,7 @@ $(document).ready(function() {
       });
       </script>
       <style type="text/css" media="screen"> 
-      #canvas {
-      width: 600px;
-      height: 400px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
+  
     .CodeMirror-line-numbers {
       width: 2.2em;
       color: #aaa;
@@ -41,72 +43,123 @@ $(document).ready(function() {
       font-family: monospace;
       padding-top: .4em;
     }
+    
   .code {
     font-family: Consolas, Monaco, "Lucida Console", monospace;
-    margin: 10px;
-    padding: 0;
+    padding-right: 6px;
   }
 
   .codeContainer {
-    width: 100%;
     height: 100%;
-    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     background-color: #bbb;
+    padding: 10px 10px 0 0;
+    padding-right: 20px;
   }
   
   #editorContainer {
       display: table-cell;
+      padding-left: 10px;
+      padding-right: 10px;
   }
   
   #jsEditorContainer {
     width: 100%; 
     height: 100%;
+  }
+  
+  #mainContainer {
     display: table;
+    border-collapse: collapse; 
+          height: 50%;
+    
   }
   
   .codeHeader {
     background-color: #333;
     color: #aaa;
+    text-align: center;
+  }
+
+  #documentList {
+    
   }
   
-  aside {
-    
+  #documentSelectionSection {
     display: table-cell;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border-right: 1px dotted #d7ad7b; 
+    padding-right: 10px;
   }
+  
+  .liquid {
+    width: 100%;
+    height: 100%;
+  }
+  
+  #drawingCanvas {
+     border: 1px solid #00f;
+  }
+  
+  #canvasSection {
+    display: table-row;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  h2 {
+    padding: 0;
+    outline: 0;
+    margin: 4px 0 0 0;
+  }
+  
 </style>
 
+
 <header><h1>raphaelditor</h1></header>
-<section id="documentSelectorContainer">
-<div id="documentControlContainer">
-  <input id="newDocumentButton" type="submit" value="Start From Scratch"/>
-</div>
-<ul>
-</ul>
-</section>
-<section id="jsEditorContainer">
-  <aside>
-  <div id="editorControlContainer">
-    <input id="saveDocumentButton" type="submit" value="Save"/>
-    <input id="resetDocumentButton" type="submit" value="Revert to Last Saved"/>
+<section id="mainSection">
+<div id="mainContainer" class="liquid">
+<section id="documentSelectionSection">
+  <div id="documentControlContainer">
+    <header><h2>Documents</h2></header>
+    <section id="documentSelectorContainer">
+      <input id="newDocumentButton" type="submit" value="Start From Scratch"/>
+      <ul id="documentList">
+        <% @documents.each do |doc| %>
+          <li><%=doc.name%></li>
+        <% end %>
+      </ul>
+    </section>
   </div>
-  </aside>
-  <div id="editorContainer">
-    <div id="jsEditor" class="codeContainer"> 
-      <header>JavaScript</header>
-      <section>
-        <textarea id="jsCode" class="code">//this is javascript</textarea>
-      </section>
+</section>
+<section id="editorContainer" class="liquid">
+    <div id="editorControlContainer">
+      <input id="saveDocumentButton" type="submit" value="Save"/>
+      <input id="resetDocumentButton" type="submit" value="Revert to Last Saved"/>
     </div>
+    <div id="editors">
+       <h2 class="codeHeader selected"><a >JavaScript</a></h2>
+    <div id="jsEditor" class="codeContainer"> 
+      <div id="jsCode">
+      </div>
+    </div>
+    <h2 class="codeHeader"><a >CSS</a></h2>
     <div id="cssEditor" class="codeContainer">
-      <header>CSS</header>
+      <header></header>
       <section>
         <textarea id="cssCode" class="code">//this is css</textarea>
       </section>
     </div>
-  </div>
+    </div>
 </section>
-<section id="liveDocContainer">
+</div>
+
+
+  <div id="drawingCanvas" class="liquid"></div>
 </section>
-<footer>Some Rights Reserved Sean Zehnder 2010-2011</footer>
+<footer><p>Some Rights Reserved Sean Zehnder 2010-2011</p></footer>
