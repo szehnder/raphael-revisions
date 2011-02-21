@@ -1,0 +1,112 @@
+<script src="javascripts/raphael-min-1.5.2.js" type="text/javascript"></script>
+<script src="javascripts/cufon/AllertaStencil_400.font.js" type="text/javascript"></script>
+<script src="javascripts/CodeMirror-0.94/js/codemirror.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+var jsEditor = undefined;
+var cssEditor = undefined;
+
+$(document).ready(function() {
+  jsEditor = CodeMirror.fromTextArea("jsCode", {
+    parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
+    path: "javascripts/CodeMirror-0.94/js/",
+    stylesheet: "javascripts/CodeMirror-0.94/css/jscolors.css",
+    lineNumbers: true,
+    height: "100%"
+    });
+  cssEditor = CodeMirror.fromTextArea("cssCode", {
+      parserfile: ["parsecss.js"],
+      path: "javascripts/CodeMirror-0.94/js/",
+      stylesheet: "javascripts/CodeMirror-0.94/css/csscolors.css",
+      lineNumbers: true,
+      height: "100%"
+      });
+      });
+      </script>
+      <style type="text/css" media="screen"> 
+      #canvas {
+      width: 600px;
+      height: 400px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .CodeMirror-line-numbers {
+      width: 2.2em;
+      color: #aaa;
+      background-color: #eee;
+      text-align: right;
+      padding-right: .3em;
+      font-size: 10pt;
+      font-family: monospace;
+      padding-top: .4em;
+    }
+  .code {
+    font-family: Consolas, Monaco, "Lucida Console", monospace;
+    margin: 10px;
+    padding: 0;
+  }
+
+  .codeContainer {
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #bbb;
+  }
+  
+  #editorContainer {
+      display: table-cell;
+  }
+  
+  #jsEditorContainer {
+    width: 100%; 
+    height: 100%;
+    display: table;
+  }
+  
+  .codeHeader {
+    background-color: #333;
+    color: #aaa;
+  }
+  
+  aside {
+    
+    display: table-cell;
+  }
+</style>
+
+<header><h1>raphaelditor</h1></header>
+<section id="documentSelectorContainer">
+<div id="documentControlContainer">
+  <input id="newDocumentButton" type="submit" value="Start From Scratch"/>
+</div>
+<ul>
+</ul>
+</section>
+<section id="jsEditorContainer">
+  <aside>
+  <div id="editorControlContainer">
+    <input id="saveDocumentButton" type="submit" value="Save"/>
+    <input id="resetDocumentButton" type="submit" value="Revert to Last Saved"/>
+  </div>
+  </aside>
+  <div id="editorContainer">
+    <div id="jsEditor" class="codeContainer"> 
+      <header>JavaScript</header>
+      <section>
+        <textarea id="jsCode" class="code">//this is javascript</textarea>
+      </section>
+    </div>
+    <div id="cssEditor" class="codeContainer">
+      <header>CSS</header>
+      <section>
+        <textarea id="cssCode" class="code">//this is css</textarea>
+      </section>
+    </div>
+  </div>
+</section>
+<section id="liveDocContainer">
+</section>
+<footer>Some Rights Reserved Sean Zehnder 2010-2011</footer>
