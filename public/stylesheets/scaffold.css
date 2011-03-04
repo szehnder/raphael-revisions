@@ -1,0 +1,183 @@
+ .CodeMirror-line-numbers {
+  width: 2.2em;
+  color: #aaa;
+  background-color: #eee;
+  text-align: right;
+  padding-right: .3em;
+  font-size: 10pt;
+  font-family: monospace;
+  padding-top: .4em;
+}
+
+.code {
+font-family: Consolas, Monaco, "Lucida Console", monospace;
+padding-right: 6px;
+}
+
+.codeContainer {
+height: 100%;
+margin-left: auto;
+margin-right: auto;
+background-color: #bbb;
+padding: 10px 10px 0 0;
+padding-right: 20px;
+}
+
+.editorContainer {
+  height: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 30px;
+}
+
+.leftCol {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    height: 100%;
+}
+
+.rightCol {
+    margin-left: 156px;
+    width: 100%;
+    height: 100%;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.codeHeader {
+background-color: #333;
+color: #aaa;
+text-align: center;
+}
+
+#documentSelectionSection {
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+border-right: 1px dotted #d7ad7b; 
+padding-right: 10px;
+}
+
+.liquid {
+width: 100%;
+height: 100%;
+}
+
+#drawingCanvas {
+ border: 1px solid #00f;
+ width: 600px;
+ height: 600px;
+ padding-left: 10px;
+ padding-right: 10px;
+ margin: 0 auto;
+}
+
+html, body {
+height: 100%;
+}
+
+h2 {
+padding: 0;
+outline: 0;
+margin: 4px 0 0 0;
+}
+/*
+#documentList .ui-selecting {
+background: silver;
+}
+#documentList .ui-selected {
+background: #00c0fd;
+}*/
+
+ol, ul {
+    list-style: none outside none;
+}
+
+/*#documentList {
+  margin-top: 10px;
+}*/
+
+    #documentList .ui-selecting { background: #FECA40; }
+	#documentList .ui-selected { background: #F39814; color: white; }
+	#documentList { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+/*	#documentList li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }*/
+
+  #documentList li {
+    padding: 12px 20px 11px 0;
+    position: relative;
+    font-size: 24px;
+    line-height: 1.1em;
+    border-bottom: 1px solid #cccccc;
+    margin-left: 6px;
+  }
+  
+ /* #documentList li.selected {
+      background-color: #00f;
+  }*/
+    #documentList li:after {
+      content: "\0020";
+      display: block;
+      height: 0;
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
+    }
+    
+    #documentList li.editing {
+      padding: 0;
+      border-bottom: 0;
+    }
+  #documentList .editing .display,
+  #documentList .edit {
+    display: none;
+  }
+    #documentList .editing .edit {
+      display: block;
+    }
+    #documentList .editing input {
+      width: 444px;
+      font-size: 24px;
+      font-family: inherit;
+      margin: 0;
+      line-height: 1.6em;
+      border: 0;
+      outline: none;
+      padding: 10px 7px 0px 27px;
+      border: 1px solid #999999;
+      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    }
+
+  #documentList .document-destroy {
+    position: absolute;
+    right: 5px;
+    top: 14px;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(/images/destroy.png) no-repeat 0 0;
+  }
+    #documentList li:hover .document-destroy {
+      display: block;
+    }
+    #documentList .document-destroy:hover {
+      background-position: 0 -20px;
+    }
+    
+    #documentList .document-path {
+        margin-left: 12px;
+        font-size: 0.4em;
+        color: #777;
+    }
+

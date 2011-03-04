@@ -1,0 +1,31 @@
+/* copyright 2010-2011 Sean Zehnder */
+/* this is the standard raphael_nodebox css include */
+
+.liquid {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; -o-box-sizing: border-box; -icab-box-sizing: border-box; -khtml-box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+    background-color: #222;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
+#canvas {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #0f0;
+    background-color: white;
+    padding: 10px;
+}
