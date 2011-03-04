@@ -15,19 +15,23 @@ ActiveRecord::Schema.define(:version => 20110221041034) do
   create_table "css_documents", :force => true do |t|
     t.text     "data"
     t.integer  "document_id"
+    t.string   "name"
+    t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "documents", :force => true do |t|
     t.string   "path"
-    t.string   "name"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "html_documents", :force => true do |t|
     t.integer  "document_id"
+    t.string   "name"
+    t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20110221041034) do
   create_table "js_documents", :force => true do |t|
     t.text     "data"
     t.integer  "document_id"
+    t.string   "name"
+    t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110221041034) do
   create_table "revisions", :force => true do |t|
     t.integer  "revisionable_id"
     t.string   "revisionable_type"
+    t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,6 +3,8 @@ class CreateCssDocuments < ActiveRecord::Migration
     create_table :css_documents do |t|
       t.text :data
       t.references :document
+      t.string :name
+      t.string :path
       t.timestamps
     end
   end
