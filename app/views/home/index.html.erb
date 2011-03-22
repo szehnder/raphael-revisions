@@ -30,22 +30,26 @@ $(document).ready(function() {
        fillSpace: true, 
        animated: 'easeslide'
   });
-  jsEditor = new CodeMirror(CodeMirror.replace("jsCode"), {
+  jsEditor = CodeMirror.fromTextArea("jsTextArea", {
     parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
     path: "javascripts/CodeMirror-0.94/js/",
     stylesheet: "javascripts/CodeMirror-0.94/css/jscolors.css",
     lineNumbers: true,
+    reindentOnLoad: true,
+    tabMode: 'spaces',
     height: "100%"
     });
+    
   cssEditor = new CodeMirror(CodeMirror.replace('cssCode'), {
       parserfile: ["parsecss.js"],
       path: "javascripts/CodeMirror-0.94/js/",
       stylesheet: "javascripts/CodeMirror-0.94/css/csscolors.css",
       lineNumbers: true,
+      reindentOnLoad: true,
       height: "100%"
       });
-      });
       
+    });
      
     
 </script>
@@ -75,7 +79,7 @@ $(document).ready(function() {
     <div id="editors" class="fullHeight">
        <h2 class="codeHeader selected"><a >JavaScript</a></h2>
        <div id="jsEditor" class="codeContainer"> 
-          <div id="jsCode"></div>
+          <div id="jsCode"><textArea id="jsTextArea"></textArea></div>
        </div>
        <h2 class="codeHeader"><a >CSS</a></h2>
        <div id="cssEditor" class="codeContainer">
@@ -84,7 +88,7 @@ $(document).ready(function() {
     </div>
   </div>
   <div id="drawingCanvas">
-    <iframe src="/document_repo/Doc_1/index.html" width="100%" height="100%"></iframe>
+    <iframe id="liveDocument" src="" width="100%" height="100%"></iframe>
   </div>
   </div>
 </section>

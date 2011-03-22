@@ -5,8 +5,12 @@ var App = {
    Views: {},
    Controllers: {},
    Collections: {},
+   frontController: undefined,
+   cssDocuments: undefined,
+   jsDocuments: undefined,
+   zDocuments: undefined,
    init: function() {
-     new App.Controllers.ZDocuments();
+     this.frontController = new App.Controllers.ZDocuments();
      Backbone.history.start();
    }
 };

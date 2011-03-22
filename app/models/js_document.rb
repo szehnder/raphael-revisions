@@ -3,9 +3,17 @@ class JsDocument < ActiveRecord::Base
   belongs_to :document
   before_create :setup_doc
   
+  after_save :update_document
+  
   private
   def setup_doc
     self.data = "//copyright 2010-2011 Sean Zehnder\r\rfunction draw()\r{\r\t//drawing code here\r}"
+    File.open(self.name, 'w') do |f|
+      f.puts(self.data)
+    end
+  end
+  
+  def update_document
     File.open(self.name, 'w') do |f|
       f.puts(self.data)
     end

@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @documents }
-      format.json { render :text => @documents.to_json}
+      format.json { render :text => @documents.to_json(:include => [:js_document, :css_document])}
     end
   end
 

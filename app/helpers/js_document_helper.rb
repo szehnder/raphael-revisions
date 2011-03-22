@@ -1,0 +1,2 @@
+module JsDocumentHelper
+end

@@ -137,17 +137,20 @@ var tokenizeJavaScript = (function() {
 
     // Fetch the next token. Dispatches on first character in the
     // stream, or first two characters when the first is a slash.
-    if (inside == "\"" || inside == "'")
-      return readString(inside);
+    if (inside == "\"" || inside == "'") {
+        var s = readString(inside);
+        return s;
+    }
     var ch = source.next();
     if (inside == "/*")
       return readMultilineComment(ch);
-    else if (ch == "\"" || ch == "'")
-      return readString(ch);
+    else if (ch == "\"" || ch == "'") {
+        var c = readString(ch);
+      return c;
     // with punctuation, the type of the token is the symbol itself
-    else if (/[\[\]{}\(\),;\:\.]/.test(ch))
+    } else if (/[\[\]{}\(\),;\:\.]/.test(ch)) {
       return {type: ch, style: "js-punctuation"};
-    else if (ch == "0" && (source.equals("x") || source.equals("X")))
+    } else if (ch == "0" && (source.equals("x") || source.equals("X")))
       return readHexNumber();
     else if (/[0-9]/.test(ch))
       return readNumber();
@@ -158,13 +161,17 @@ var tokenizeJavaScript = (function() {
       { nextUntilUnescaped(source, null); return {type: "comment", style: "js-comment"};}
       else if (regexp)
         return readRegexp();
-      else
-        return readOperator();
+      else {
+        var c = readOperator();
+        return c;
+        }   
     }
     else if (isOperatorChar.test(ch))
       return readOperator();
-    else
-      return readWord();
+    else {
+        var s = readWord();
+        return s;
+    }
   }
 
   // The external interface to the tokenizer.

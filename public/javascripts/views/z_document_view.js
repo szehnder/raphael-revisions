@@ -55,7 +55,7 @@ App.Views.ZDocumentView = Backbone.View.extend({
    
    handleClick: function() {
        console.log("clicked item["+this.model.get('document').id+"]: "+this.model.get('document').title);
-      
+       $(this.el).trigger("selected", this.model.get('document').id);
        if (this.model.isSelected()) {
            //$(this.el).addClass("selected");
        } else {
@@ -65,6 +65,11 @@ App.Views.ZDocumentView = Backbone.View.extend({
    
    handleSelectionStateChange: function (data, i) {
        this.model.selected = $(this.el).hasClass('ui-selected');
+       if (this.model.selected==true) {
+           $("#documentList").addClass("selection_id_"+this.model.get('document').id);           
+       } else {
+           $("#documentList").removeClass("selection_id_"+this.model.get('document').id);           
+       }
        console.log(""+this.model.doc.title+" is now "+(this.model.isSelected())? 'selected' : 'unselected');
    }
 });

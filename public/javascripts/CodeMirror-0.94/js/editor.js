@@ -84,7 +84,7 @@ function asEditorLines(string) {
 var Editor = (function(){
   // The HTML elements whose content should be suffixed by a newline
   // when converting them to flat text.
-  var newlineElements = {"P": true, "DIV": true, "LI": true};
+  var newlineElements = {"P": true, "DIV": true, "LI": true, "BR": true};
 
   // Helper function for traverseDOM. Flattens an arbitrary DOM node
   // into an array of textnodes and <br> tags.
@@ -107,7 +107,7 @@ var Editor = (function(){
         if (!leaving && newlineElements.hasOwnProperty(node.nodeName.toUpperCase())) {
           leaving = true;
           if (!atEnd || !top)
-            result.push(document.createElement("br"));
+            result.push(document.createElement("BR"));
         }
       }
     }
@@ -147,7 +147,7 @@ var Editor = (function(){
     // The dirty property is used by the highlighter to determine
     // which parts of the document have to be re-highlighted.
     function insertPart(part){
-      var text = "\n";
+      var text = "\r\n";
       if (part.nodeType == 3) {
         select.snapshotChanged();
         part = makePartSpan(part);
@@ -202,7 +202,7 @@ var Editor = (function(){
           node.parentNode.insertBefore(makePartSpan(""), node);
         nodeQueue.push(node);
         afterBR = true;
-        return "\n";
+        return "\r\n";
       }
       else {
         var end = !node.nextSibling;
@@ -300,7 +300,7 @@ var Editor = (function(){
 
     if (caseFold) pattern = pattern.toLowerCase();
     // Create a matcher function based on the kind of string we have.
-    var target = pattern.split("\n");
+    var target = pattern.split("\r\n");
     this.matches = (target.length == 1) ?
       // For one-line strings, searching can be done simply by calling
       // indexOf or lastIndexOf on the current line.
@@ -684,7 +684,7 @@ var Editor = (function(){
       for (var pos = h.nodeAfter(start.node); pos != end.node; pos = h.nodeAfter(pos))
         text.push(h.textAfter(pos));
       text.push(h.textAfter(end.node).slice(0, end.offset));
-      return cleanText(text.join("\n"));
+      return cleanText(text.join("\r\n"));
     },
 
     // Replace the selection with another piece of text.
@@ -1578,7 +1578,7 @@ var Editor = (function(){
       forEach(parsed, function(token){
         var part = parts.getNonEmpty();
 
-        if (token.value == "\n"){
+        if (token.value == "\r\n"){
           // The idea of the two streams actually staying synchronized
           // is such a long shot that we explicitly check.
           if (!isBR(part))

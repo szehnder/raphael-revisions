@@ -70,8 +70,8 @@ class Document < ActiveRecord::Base
 
   def update_static_files
     setup_folders() if !Dir.exists?(dirname)
-    self.path = relative_path;
+    self.path = relative_path+'/' if (!path)
     File.open(jsname, 'a') do |f| f.puts(self.js_document.data) end if self.js_document
-    File.open(cssname, 'a') do |f| f.push(self.css_document.data) end if self.css_document
+    File.open(cssname, 'a') do |f| f.puts(self.css_document.data) end if self.css_document
   end
 end

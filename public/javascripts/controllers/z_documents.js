@@ -20,10 +20,14 @@ App.Controllers.ZDocuments = Backbone.Controller.extend({
     
     index: function() {
         console.log("[Controller] index()");
-        var documents = new App.Collections.ZDocuments();
-                       documents.fetch({
-                           success: function() {
-                                           new App.Views.Index({ documents: documents });
+        App.zDocuments = new App.Collections.ZDocuments();
+        App.jsDocuments = new App.Collections.JsDocuments();
+        App.cssDocuments = new App.Collections.CssDocuments();
+        App.jsDocuments.fetch();
+        App.cssDocuments.fetch();
+        App.zDocuments.fetch({
+                success: function() {
+                                           new App.Views.Index({ documents: App.zDocuments, jsDocuments: App.jsDocuments, cssDocuments: App.cssDocuments});
                                        },
                                        error: function() {
                                            new Error({ message: "Error loading documents." });

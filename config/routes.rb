@@ -3,6 +3,9 @@ JsRevisions::Application.routes.draw do
   # first created -> highest priority.
 
   resources :documents
+  resources :js_documents
+  resources :css_documents
+  resources :revisions
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
