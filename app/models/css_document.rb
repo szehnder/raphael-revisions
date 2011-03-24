@@ -4,9 +4,13 @@ class CssDocument < ActiveRecord::Base
    before_create :setup_doc
    
    private
+   def full_path
+      "#{path}/#{name}"
+    end
+    
    def setup_doc
      self.data = "/* copyright 2010-2011 Sean Zehnder */"
-     File.open(self.name, 'w') do |f|
+     File.open(full_path, 'w') do |f|
        f.puts(self.data)
      end
    end
