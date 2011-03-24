@@ -19,7 +19,7 @@ App.Controllers.ZDocuments = Backbone.Controller.extend({
     },
     
     index: function() {
-        console.log("[Controller] index()");
+       // console.log("[Controller] index()");
         App.zDocuments = new App.Collections.ZDocuments();
         App.jsDocuments = new App.Collections.JsDocuments();
         App.cssDocuments = new App.Collections.CssDocuments();

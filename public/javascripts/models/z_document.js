@@ -9,10 +9,10 @@ var ZDocument = Backbone.Model.extend({
        }
        this.selected = false;
      },
-    
+         
     url : function() {
       var base = 'documents';
-      if (this.isNew()) return base;
+      //if (this.isNew()) return base;
       return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.doc.id;
     },
         

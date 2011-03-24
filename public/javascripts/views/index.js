@@ -9,7 +9,6 @@ App.Views.Index = Backbone.View.extend({
         // App.Collections.ZDocuments.bind('add',     this.addOne);
         // App.Collections.ZDocuments.bind('refresh', this.addAll);
         // App.Collections.ZDocuments.bind('all',     this.render);
-
           $('.new-document').bind("click", this.doAddDocument);
           //$('.refresh-').bind("click", this.doRefresh);
         
@@ -24,17 +23,11 @@ App.Views.Index = Backbone.View.extend({
         
      render: function() {
          this.addAll();
-                         // var stuff;
-                         //                       this.documents.each(function(item) {
-                         //                          console.log(item);
-                         //                          stuff = ich.zDocumentTemplate(item.toJSON().document); 
-                         //                          $('#documentList').append(stuff);
-                         //                       });
-                $('#documentList').selectable();
-                $('#documentList').bind('selectablestop', this.handleSelectionChanged);
-                $('#saveDocumentButton').bind('click', this.handleSaveDocumentButtonClick);
-                return this;
-        },
+         $('#documentList').selectable();
+         $('#documentList').bind('selectablestop', this.handleSelectionChanged);
+         $('#saveDocumentButton').bind('click', this.handleSaveDocumentButtonClick);
+        return this;
+    },
 
     handleTitleClick: function() {
         console.log("you just clicked the document: unknown");
@@ -67,22 +60,28 @@ App.Views.Index = Backbone.View.extend({
             console.log("selection changed!");
             //debugger;
         },
-        
-        handleItemSelectionChange: function(event, document_id) {
-              
+            
+        handleItemSelectionChange: function(event, document_id) { 
             var doc = App.zDocuments.findById(document_id);
             //var jsdoc = App.jsDocuments.findByDocumentId(document_id);
             //var cssdoc = App.cssDocuments.findByDocumentId(document_id);
             App.zDocuments.selectedItem = doc;
-            $('#liveDocument').attr('src', doc.path);
-            jsEditor.setCode(doc.js_document.data);
-            cssEditor.setCode(doc.css_document.data);
+            jsEditor.getSession().setValue(unescape(doc.js_document.data));
+            //cssEditor.setValue(unescape(doc.css_document.data));
+            
+           $('#liveDocument').attr('src',  App.zDocuments.selectedItem.path);   
         },
         
         handleSaveDocumentButtonClick: function(event) {
-            App.zDocuments.selectedItem.js_document.data = jsEditor.getCode();
-            App.zDocuments.selectedItem.css_document.data = cssEditor.getCode();
-            var jsDoc = new JsDocument({id: App.zDocuments.selectedItem.js_document.id, js_document: {data: jsEditor.getCode()}});
+            // App.zDocuments.selectedItem.js_document.data = jsEditor.getValue();
+            //             App.zDocuments.selectedItem.css_document.data = cssEditor.getValue();
+            //             var jsDoc = new JsDocument({id: App.zDocuments.selectedItem.js_document.id, js_document: {data: escape(jsEditor.getValue())}});
+            App.zDocuments.selectedItem.js_document.data = jsEditor.getSession().getValue();
+           // App.zDocuments.selectedItem.css_document.data = cssEditor.getSession().getValue();
+            var jsDoc = new JsDocument({id: App.zDocuments.selectedItem.js_document.id, js_document: {data: escape(jsEditor.getSession().getValue())}});
+            jsDoc.bind("change", function() {
+                $('#liveDocument').attr('src',  App.zDocuments.selectedItem.path);   
+            });
             jsDoc.save();
         }
     

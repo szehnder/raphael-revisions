@@ -1,1 +1,3 @@
-//copyright 2010-2011 Sean Zehnderfunction draw(){	//drawing code here}
+function draw() {
+  paper.rect(10, 100, 44, 20);
+}

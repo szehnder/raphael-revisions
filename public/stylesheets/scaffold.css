@@ -24,13 +24,13 @@ padding-right: 20px;
 }
 
 .editorContainer {
-  height: 300px;
+  height: 100%;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 30px;
 }
 
-.leftCol {
+.navCol {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -38,10 +38,21 @@ padding-right: 20px;
     height: 100%;
 }
 
-.rightCol {
+.docCol {
     margin-left: 156px;
-    width: 100%;
+    float: left;
+    width: 300px;
     height: 100%;
+}
+
+.drawingCol {
+    float:left;
+    margin-left: 456px;
+    margin-right: 40px;
+    width: 95%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
 }
 
 .fullHeight {
@@ -72,16 +83,21 @@ height: 100%;
 }
 
 #drawingCanvas {
- border: 1px solid #00f;
- width: 600px;
- height: 600px;
+ /*border: 1px solid #00f;*/
+/* width: 600px;
+ height: 600px;*/
  padding-left: 10px;
  padding-right: 10px;
- margin: 0 auto;
+/* margin: 0 auto;*/
 }
 
 html, body {
 height: 100%;
+background-color: #aaa;
+}
+
+body {
+    overflow: hidden;
 }
 
 h2 {
@@ -182,3 +198,23 @@ ol, ul {
         color: #777;
     }
 
+    span.js-keyword {color: #90b;}
+    span.js-atom {color: #291;}
+    span.js-variabledef {color: #00f;}
+    span.js-localvariable {color: #049;}
+    span.js-comment {color: #a70;}
+    span.js-string {color: #a22;}
+
+    #jsCode {
+       
+    }
+
+    #jsCodeEditor { 
+           margin: 0;
+           position: relative;
+           top: 0;
+           left: 0; 
+           width: 500px; 
+           height: 600px
+          
+       }
